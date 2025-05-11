@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ServiceController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
-        $services = Service::all();
+        $products = Product::all();
 
-        return Inertia::render('admin/service/index', [
-            'services' => $services,
+        return Inertia::render('admin/product/index', [
+            'products' => $products,
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('admin/service/create');
+        return Inertia::render('admin/product/create');
     }
 
     public function store(Request $request)
@@ -29,51 +29,49 @@ class ServiceController extends Controller
             'description' => 'nullable|string',
             'photo'       => 'nullable|array',
             'price'       => 'required|numeric|min:0',
-            'duration'    => 'required|integer|min:1',
             'active'      => 'required|boolean',
         ]);
 
-        Service::create($validated);
+        Product::create($validated);
 
-        return redirect()->route('service.index')->with('success', 'Service created successfully.');
+        return redirect()->route('product.index')->with('success', 'Produto criado com sucesso.');
     }
 
     public function edit($id)
     {
-        $service = Service::findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        return Inertia::render('admin/service/edit', [
-            'service' => $service,
+        return Inertia::render('admin/product/edit', [
+            'product' => $product,
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
+        $product = Product::findOrFail($id);
 
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'description' => 'nullable|string',
             'photo'       => 'nullable|array',
             'price'       => 'required|numeric|min:0',
-            'duration'    => 'required|integer|min:1',
             'active'      => 'required|boolean',
         ]);
 
-        $service->update($validated);
+        $product->update($validated);
 
-        return redirect()->route('service.index')->with('success', 'Service updated successfully.');
+        return redirect()->route('product.index')->with('success', 'Produto atualizado com sucesso.');
     }
 
     public function delete(Request $request)
     {
         $request->validate([
-            'id' => 'required|exists:services,id',
+            'id' => 'required|exists:products,id',
         ]);
 
-        $service = Service::findOrFail($request->id);
-        $service->delete();
+        $product = Product::findOrFail($request->id);
+        $product->delete();
 
-        return redirect()->route('service.index')->with('success', 'Service deleted successfully.');
+        return redirect()->route('product.index')->with('success', 'Produto excluído com sucesso.');
     }
 }

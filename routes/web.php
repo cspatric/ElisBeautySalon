@@ -23,10 +23,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
+    Route::put('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::post('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
 
-    // Services
+    // Service
     Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
     Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
     Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
@@ -49,6 +51,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-// Inclusão de outros arquivos de rotas
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
