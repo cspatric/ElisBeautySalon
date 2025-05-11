@@ -26,16 +26,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::post('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
 
-    // Service
+    // Services
     Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
     Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
     Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
+    Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::post('/service/delete', [ServiceController::class, 'delete'])->name('service.delete');
+
 
     // Employee
     Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
     Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::get('/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('employee.edit');
     Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::post('/employee/delete', [EmployeeController::class, 'delete'])->name('employee.delete');
 
     // Dashboard
