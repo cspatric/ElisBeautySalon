@@ -12,13 +12,18 @@ Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
 
+    // Schedule Client
+    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
+    Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // Home
     Route::get('/home', [PageController::class, 'index'])->name('home.index');
 
-    // Schedule
-    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+    // Schedule Employee
+    Route::put('/schedule/update-status/{id}', [ScheduleController::class, 'updateStatus'])->name('schedule.updateStatus');
 
     // Product
     Route::get('/product', [ProductController::class, 'index'])->name('product.index');
@@ -31,8 +36,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Service
     Route::get('/service', [ServiceController::class, 'index'])->name('service.index');
     Route::get('/service/create', [ServiceController::class, 'create'])->name('service.create');
-    Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
     Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
+    Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
     Route::put('/service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
     Route::post('/service/delete', [ServiceController::class, 'delete'])->name('service.delete');
 
