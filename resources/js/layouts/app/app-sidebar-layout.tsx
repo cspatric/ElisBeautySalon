@@ -11,7 +11,7 @@ export default function AppSidebarLayout({ children, breadcrumbs = [] }: PropsWi
             <AppSidebar />
             <AppContent className="w-full border-l bg-[#F1F1F1]">
                 <AppSidebarHeader breadcrumbs={breadcrumbs} />
-                <div className="overflow-y-auto">{children}</div>
+                <div className="overflow-y-auto px-6 py-3">{children}</div>
             </AppContent>
         </AppShell>
     );

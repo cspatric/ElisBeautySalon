@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -17,6 +18,9 @@ Route::get('/', function () {
     Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+
+    //Home
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
     // Schedule Employee
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
@@ -46,11 +50,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
     Route::put('/employee/update/{id}', [EmployeeController::class, 'update'])->name('employee.update');
     Route::post('/employee/delete', [EmployeeController::class, 'delete'])->name('employee.delete');
-
-    // Dashboard
-    Route::get('/dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
 });
 
 require __DIR__.'/settings.php';
