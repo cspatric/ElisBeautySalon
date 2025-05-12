@@ -9,10 +9,11 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
             <SidebarMenu>
                 {items.map((item) => (
                     <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton  
-                            asChild isActive={item.href === page.url}
+                        <SidebarMenuButton
+                            asChild
+                            isActive={item.href === page.url}
                             tooltip={{ children: item.title }}
-                            className='bg-[#F6F6F6] text-[#303030] py-5 px-3 mt-2'
+                            className="mt-2 bg-[#F6F6F6] px-3 py-5 text-[#303030]"
                         >
                             <Link href={item.href} prefetch>
                                 {item.icon && <item.icon />}
