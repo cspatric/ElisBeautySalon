@@ -13,16 +13,13 @@ Route::get('/', function () {
 })->name('home');
 
     // Schedule Client
-    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
     Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Home
-    Route::get('/home', [PageController::class, 'index'])->name('home.index');
-
     // Schedule Employee
+    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::put('/schedule/update-status/{id}', [ScheduleController::class, 'updateStatus'])->name('schedule.updateStatus');
 
     // Product
