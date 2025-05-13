@@ -1,9 +1,13 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
+import { User, type BreadcrumbItem } from '@/types';
 import { Head, router } from '@inertiajs/react';
-import { useState } from 'react';
+import { FormEvent, ReactNode, useState } from 'react';
 
 type Schedule = {
+    client_observation: string;
+    client_phone: ReactNode;
+    client_name: ReactNode;
+    status: string;
     id: number;
     scheduled_date: string;
     scheduled_time: string;
@@ -67,6 +71,7 @@ export default function Home(props: Props) {
         return matchService && matchStart && matchEnd && matchSearch && matchUser;
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         if (!selectedSchedule) return;

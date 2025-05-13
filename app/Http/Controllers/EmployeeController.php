@@ -6,17 +6,38 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Employee;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Service;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        return Inertia::render('admin/employee/index');
+        $user = Auth::user();
+        $employees = Employee::all();
+        $services = Service::all();
+
+        return Inertia::render('admin/employee/index', [
+            'user' => $user,
+            'employees' => $employees,
+            'services' => $services,
+        ]);
     }
 
+    
     public function create()
     {
-        return Inertia::render('admin/employee/create');
+        $user = Auth::user();
+        $employees = Employee::all();
+        $services = Service::all();
+
+        return Inertia::render('admin/employee/create', [
+            'user' => $user,
+            'employees' => $employees,
+            'services' => $services,
+        ]);
+        
     }
 
     public function store(Request $request)
