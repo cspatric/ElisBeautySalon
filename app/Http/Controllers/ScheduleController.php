@@ -2,18 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Service;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $schedules = Schedule::with(['service', 'employee'])->get();
+        $employees = Employee::all();
+        $services = Service::all();
+        $schedule = Schedule::all();
 
         return Inertia::render('admin/schedule/index', [
-            'schedules' => $schedules,
+            'user' => $user,
+            'employees' => $employees,
+            'services' => $services,
+            'schedule' => $schedule,
         ]);
     }
 
