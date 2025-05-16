@@ -49,6 +49,7 @@ const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', '
 
 export default function Home(props: Props) {
     const { schedule, services, employees } = props;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null);
     const [status, setStatus] = useState<string>('pending');
@@ -64,7 +65,7 @@ export default function Home(props: Props) {
         const matchService = selectedService === null || item.service_id === selectedService;
         const matchStart = startDate === '' || itemDate >= new Date(startDate);
         const matchEnd = endDate === '' || itemDate <= new Date(endDate);
-        const cliente = item.client_name?.toLowerCase() ?? '';
+        const cliente = typeof item.client_name === 'string' ? item.client_name.toLowerCase() : '';
         const matchSearch = cliente.includes(search);
         const matchUser = !onlyMySchedules || item.employee_id === props.user.id;
 

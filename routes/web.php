@@ -16,6 +16,7 @@ Route::get('/', function () {
     // Schedule Client
     Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
     Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('/schedule/proof/{id}', [ScheduleController::class, 'storeProof'])->name('schedule.proof');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

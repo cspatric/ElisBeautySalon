@@ -29,7 +29,15 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        return Inertia::render('admin/schedule/create');
+        $employees = Employee::all();
+        $services = Service::all();
+        $schedule = Schedule::all();
+
+        return Inertia::render('admin/schedule/User/create', [
+            'employees' => $employees,
+            'services' => $services,
+            'schedule' => $schedule,
+        ]);
     }
 
     public function store(Request $request)
@@ -45,10 +53,23 @@ class ScheduleController extends Controller
             'status'             => 'required|in:pending,confirmed,finalized,cancelled',
         ]);
 
-        Schedule::create($validated);
+        $schedule = Schedule::create($validated);
 
-        return redirect()->route('schedule.index')->with('success', 'Agendamento criado com sucesso.');
+        return redirect()->route('schedule.proof', ['id' => $schedule->id]);
     }
+
+    public function storeProof($id)
+{
+    $schedule = Schedule::with(['service', 'employee'])->findOrFail($id);
+    $employees = Employee::all();
+    $services = Service::all();
+
+    return Inertia::render('admin/schedule/User/proof', [
+        'employees' => $employees,
+        'services' => $services,
+        'schedule' => $schedule,
+    ]);
+}
 
     public function updateStatus(Request $request, $id)
 {
