@@ -16,7 +16,6 @@ interface Props {
     services: Service[];
 }
 
-
 const breadcrumbs: BreadcrumbItem[] = [{ title: 'Serviços', href: '/service' }];
 
 export default function Index({ services }: Props) {
@@ -54,39 +53,38 @@ export default function Index({ services }: Props) {
                 </div>
 
                 {/* Lista de serviços */}
-               {/* Lista de serviços */}
-<div>
-    <h2 className="mb-4 text-xl font-semibold">Serviços</h2>
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {services.map((service) => (
-            <div key={service.id} className="rounded-xl bg-white p-3 shadow-sm">
-                <div className="aspect-video overflow-hidden rounded-lg border border-gray-200">
-                    <img
-                        src={service.photo?.[0] || 'https://via.placeholder.com/300x150'}
-                        alt={service.name}
-                        className="h-full w-full object-cover"
-                    />
+                {/* Lista de serviços */}
+                <div>
+                    <h2 className="mb-4 text-xl font-semibold">Serviços</h2>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {services.map((service) => (
+                            <div key={service.id} className="rounded-xl bg-white p-3 shadow-sm">
+                                <div className="aspect-video overflow-hidden rounded-lg border border-gray-200">
+                                    <img
+                                        src={service.photo?.[0] || 'https://via.placeholder.com/300x150'}
+                                        alt={service.name}
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
+                                <div className="mt-2">
+                                    <p className="font-medium text-gray-800">{service.name}</p>
+                                    <p className="text-sm text-gray-600">R${Number(service.price).toFixed(2)}</p>
+                                    <p className="text-xs text-gray-400">
+                                        {Math.floor(service.duration / 60)}h {service.duration % 60}min
+                                    </p>
+                                </div>
+                                <div className="mt-3 flex justify-end">
+                                    <Button
+                                        className="rounded bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+                                        onClick={() => router.visit(route('service.edit', { id: service.id }))}
+                                    >
+                                        Editar
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div className="mt-2">
-                    <p className="font-medium text-gray-800">{service.name}</p>
-                    <p className="text-sm text-gray-600">R${Number(service.price).toFixed(2)}</p>
-                    <p className="text-xs text-gray-400">
-                        {Math.floor(service.duration / 60)}h {service.duration % 60}min
-                    </p>
-                </div>
-                <div className="mt-3 flex justify-end">
-                    <Button
-                        className="text-sm px-3 py-1 bg-blue-600 text-white hover:bg-blue-700 rounded"
-                        onClick={() => router.visit(route('service.edit', { id: service.id }))}
-                    >
-                        Editar
-                    </Button>
-                </div>
-            </div>
-        ))}
-    </div>
-</div>
-
             </div>
         </AppLayout>
     );

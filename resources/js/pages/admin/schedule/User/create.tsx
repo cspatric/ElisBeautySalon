@@ -50,8 +50,8 @@ export default function UserScheduleCreate({ employees, services }: Props) {
                 {/* Tabs fake */}
                 <div className="flex gap-6 px-5 pt-4 text-lg font-semibold lg:px-20">
                     <span className="cursor-pointer border-b-2 border-black pb-1 text-black">Home</span>
-                    <span className="cursor-pointer text-gray-500 hover:black">Serviços</span>
-                    <span className="cursor-pointer text-gray-500 hover:black">Produtos</span>
+                    <span className="hover:black cursor-pointer text-gray-500">Serviços</span>
+                    <span className="hover:black cursor-pointer text-gray-500">Produtos</span>
                 </div>
 
                 {step === 'home' && (

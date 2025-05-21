@@ -1,4 +1,3 @@
-
 import { type PropsWithChildren } from 'react';
 
 interface AuthLayoutProps {
@@ -13,7 +12,6 @@ export default function AuthSimpleLayout({ children, title, description }: Props
             <div className="w-full max-w-sm">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col items-center gap-4">
-
                         <div className="space-y-2 text-center">
                             <h1 className="text-xl font-medium">{title}</h1>
                             <p className="text-muted-foreground text-center text-sm">{description}</p>

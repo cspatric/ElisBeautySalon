@@ -59,7 +59,6 @@ export default function Login({ status }: LoginProps) {
                     <div className="grid gap-2">
                         <div className="flex items-center">
                             <Label htmlFor="password">Senha</Label>
-                            
                         </div>
                         <Input
                             id="password"

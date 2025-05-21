@@ -44,43 +44,40 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function Home({ user, schedule = [], services = [], stats = {
-    totalRevenue: 0,
-    totalAppointments: 0,
-    totalSales: 0,
-    growthRate: 0
-} }: Props) {
+export default function Home({
+    user,
+    schedule = [],
+    services = [],
+    stats = {
+        totalRevenue: 0,
+        totalAppointments: 0,
+        totalSales: 0,
+        growthRate: 0,
+    },
+}: Props) {
     // Formatar valores monetários
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
-            currency: 'BRL'
+            currency: 'BRL',
         }).format(value);
     };
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            
+
             <div className="space-y-6">
                 {/* Header Section */}
                 <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Olá, {user.name}!
-                        </h1>
-                        <p className="text-muted-foreground mt-1 text-sm">
-                            Aqui está o resumo das suas atividades
-                        </p>
+                        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Olá, {user.name}!</h1>
+                        <p className="text-muted-foreground mt-1 text-sm">Aqui está o resumo das suas atividades</p>
                     </div>
-                    
+
                     <div className="flex items-center gap-3">
                         {user.avatar ? (
-                            <img 
-                                src={user.avatar} 
-                                alt={user.name} 
-                                className="h-10 w-10 rounded-full object-cover"
-                            />
+                            <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover" />
                         ) : (
                             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
                                 {user.name.charAt(0).toUpperCase()}
@@ -101,9 +98,7 @@ export default function Home({ user, schedule = [], services = [], stats = {
                             <p className="text-3xl font-bold">{formatCurrency(stats.totalRevenue)}</p>
                             <div className="mt-2 flex items-center text-sm">
                                 <span className={`flex items-center ${stats.growthRate >= 0 ? 'text-green-500' : 'text-red-500'}`}>
-                                    {stats.growthRate >= 0 ? (
-                                        <ArrowUpRight className="h-4 w-4" />
-                                    ) : null}
+                                    {stats.growthRate >= 0 ? <ArrowUpRight className="h-4 w-4" /> : null}
                                     {Math.abs(stats.growthRate)}% em relação ao mês anterior
                                 </span>
                             </div>
@@ -119,9 +114,7 @@ export default function Home({ user, schedule = [], services = [], stats = {
                         <div className="mt-4">
                             <p className="text-3xl font-bold">{stats.totalAppointments}</p>
                             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                {stats.totalAppointments > 0 ? 
-                                    `${stats.totalAppointments} agendamentos este mês` : 
-                                    'Nenhum agendamento este mês'}
+                                {stats.totalAppointments > 0 ? `${stats.totalAppointments} agendamentos este mês` : 'Nenhum agendamento este mês'}
                             </p>
                         </div>
                     </div>
@@ -135,9 +128,9 @@ export default function Home({ user, schedule = [], services = [], stats = {
                         <div className="mt-4">
                             <p className="text-3xl font-bold">{formatCurrency(stats.totalSales)}</p>
                             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                {stats.totalSales > 0 && stats.totalAppointments > 0 ? 
-                                    `${formatCurrency(stats.totalSales / stats.totalAppointments)} por atendimento` : 
-                                    'Sem vendas registradas'}
+                                {stats.totalSales > 0 && stats.totalAppointments > 0
+                                    ? `${formatCurrency(stats.totalSales / stats.totalAppointments)} por atendimento`
+                                    : 'Sem vendas registradas'}
                             </p>
                         </div>
                     </div>
@@ -150,7 +143,10 @@ export default function Home({ user, schedule = [], services = [], stats = {
                         <h3 className="text-lg font-semibold">Próximos Agendamentos</h3>
                         <div className="mt-4 space-y-4">
                             {schedule.slice(0, 3).map((appointment) => (
-                                <div key={appointment.id} className="flex items-center justify-between rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800">
+                                <div
+                                    key={appointment.id}
+                                    className="flex items-center justify-between rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                >
                                     <div>
                                         <p className="font-medium">{appointment.client_name}</p>
                                         <p className="text-sm text-gray-500">{appointment.service_name}</p>
@@ -163,9 +159,7 @@ export default function Home({ user, schedule = [], services = [], stats = {
                                     </div>
                                 </div>
                             ))}
-                            {schedule.length === 0 && (
-                                <p className="text-center text-sm text-gray-500">Nenhum agendamento próximo</p>
-                            )}
+                            {schedule.length === 0 && <p className="text-center text-sm text-gray-500">Nenhum agendamento próximo</p>}
                         </div>
                     </div>
 
@@ -174,7 +168,10 @@ export default function Home({ user, schedule = [], services = [], stats = {
                         <h3 className="text-lg font-semibold">Serviços Populares</h3>
                         <div className="mt-4 space-y-4">
                             {services.slice(0, 3).map((service) => (
-                                <div key={service.id} className="flex items-center justify-between rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800">
+                                <div
+                                    key={service.id}
+                                    className="flex items-center justify-between rounded-lg p-3 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                >
                                     <div>
                                         <p className="font-medium">{service.name}</p>
                                         <p className="text-sm text-gray-500">Duração: {service.duration}</p>
@@ -182,9 +179,7 @@ export default function Home({ user, schedule = [], services = [], stats = {
                                     <p className="font-semibold">{formatCurrency(service.price)}</p>
                                 </div>
                             ))}
-                            {services.length === 0 && (
-                                <p className="text-center text-sm text-gray-500">Nenhum serviço cadastrado</p>
-                            )}
+                            {services.length === 0 && <p className="text-center text-sm text-gray-500">Nenhum serviço cadastrado</p>}
                         </div>
                     </div>
                 </div>

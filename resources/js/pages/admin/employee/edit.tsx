@@ -116,12 +116,7 @@ export default function EditEmployee({ employee }: Props) {
 
                     <div className="flex flex-col">
                         <label className="mb-1 text-gray-600">Foto:</label>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
-                        />
+                        <input type="file" accept="image/*" onChange={handleFileChange} className="rounded-lg border border-gray-300 px-4 py-2" />
                         {data.photo && <img src={data.photo} alt="Pré-visualização" className="mt-2 h-20 w-20 rounded-full border object-cover" />}
                     </div>
 
