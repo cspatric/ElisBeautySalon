@@ -10,7 +10,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    return redirect()->route('schedule.create');
 })->name('home');
 
     // Schedule Client
