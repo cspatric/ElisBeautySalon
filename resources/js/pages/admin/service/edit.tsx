@@ -56,87 +56,130 @@ export default function EditService({ service }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Editar Serviço" />
 
-            <div className="flex flex-col gap-6 p-6">
-                <h2 className="text-2xl font-semibold text-gray-800">Editar Serviço</h2>
+            <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+                <div>
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Editar Serviço</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Atualize as informações do serviço</p>
+                </div>
 
-                <form onSubmit={handleSubmit} className="grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2">
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-gray-600">Nome:</label>
-                        <input
-                            type="text"
-                            value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
-                        />
-                        {errors.name && <span className="text-sm text-red-600">{errors.name}</span>}
+                <form
+                    onSubmit={handleSubmit}
+                    className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 space-y-6"
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Nome */}
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome</label>
+                            <input
+                                type="text"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                            />
+                            {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
+                        </div>
+
+                        {/* Preço */}
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Valor (R$)</label>
+                            <input
+                                type="number"
+                                value={data.price}
+                                onChange={(e) => setData('price', e.target.value)}
+                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                            />
+                            {errors.price && <p className="text-sm text-red-600">{errors.price}</p>}
+                        </div>
+
+                        {/* Duração */}
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Duração (min)</label>
+                            <input
+                                type="number"
+                                value={data.duration}
+                                onChange={(e) => setData('duration', e.target.value)}
+                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                            />
+                            {errors.duration && <p className="text-sm text-red-600">{errors.duration}</p>}
+                        </div>
+
+                        {/* Status */}
+                        <div className="space-y-2">
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
+                            <select
+                                value={data.active ? '1' : '0'}
+                                onChange={(e) => setData('active', e.target.value === '1')}
+                                className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                            >
+                                <option value="1">Ativo</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-gray-600">Valor (R$):</label>
-                        <input
-                            type="number"
-                            value={data.price}
-                            onChange={(e) => setData('price', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
-                        />
-                        {errors.price && <span className="text-sm text-red-600">{errors.price}</span>}
-                    </div>
-
-                    <div className="col-span-2 flex flex-col">
-                        <label className="mb-1 text-gray-600">Descrição:</label>
+                    {/* Descrição */}
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Descrição</label>
                         <textarea
+                            rows={4}
                             value={data.description}
                             onChange={(e) => setData('description', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
-                            rows={3}
+                            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         />
-                        {errors.description && <span className="text-sm text-red-600">{errors.description}</span>}
+                        {errors.description && <p className="text-sm text-red-600">{errors.description}</p>}
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-gray-600">Tempo (min):</label>
-                        <input
-                            type="number"
-                            value={data.duration}
-                            onChange={(e) => setData('duration', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
-                        />
-                        {errors.duration && <span className="text-sm text-red-600">{errors.duration}</span>}
-                    </div>
-
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-gray-600">Fotos:</label>
+                    {/* Fotos */}
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Fotos</label>
                         <input
                             type="file"
                             accept="image/*"
                             multiple
                             onChange={handleFileChange}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
+                            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         />
                         {data.photo.length > 0 && (
-                            <div className="mt-2 flex flex-wrap gap-2">
+                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                                 {data.photo.map((img, idx) => (
-                                    <img key={idx} src={img} alt="Pré-visualização" className="h-16 w-16 rounded border object-cover" />
+                                    <img
+                                        key={idx}
+                                        src={img}
+                                        alt={`Foto ${idx + 1}`}
+                                        className="h-24 w-full rounded-lg object-cover border border-gray-300 dark:border-gray-600"
+                                    />
                                 ))}
                             </div>
                         )}
                     </div>
 
-                    <div className="flex flex-col">
-                        <label className="mb-1 text-gray-600">Status:</label>
-                        <select
-                            value={data.active ? '1' : '0'}
-                            onChange={(e) => setData('active', e.target.value === '1')}
-                            className="rounded-lg border border-gray-300 px-4 py-2"
+                    {/* Botão de salvar */}
+                    <div className="flex justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <Button
+                            type="submit"
+                            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg shadow-sm"
+                            disabled={processing}
                         >
-                            <option value="1">Ativo</option>
-                            <option value="0">Desativado</option>
-                        </select>
-                    </div>
-
-                    <div className="col-span-2 flex justify-end">
-                        <Button type="submit" className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700" disabled={processing}>
-                            {processing ? 'Salvando...' : 'Salvar Alterações'}
+                            {processing ? (
+                                <span className="flex items-center gap-2">
+                                    <svg
+                                        className="h-4 w-4 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                                        />
+                                    </svg>
+                                    Salvando...
+                                </span>
+                            ) : (
+                                'Salvar Alterações'
+                            )}
                         </Button>
                     </div>
                 </form>
