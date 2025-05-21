@@ -12,32 +12,67 @@ export default function AuthSplitLayout({ children, title, description }: PropsW
     const { name, quote } = usePage<SharedData>().props;
 
     return (
-        <div className="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
-            <div className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r">
-                <div className="absolute inset-0 bg-zinc-900" />
-                <Link href={route('home')} className="relative z-20 flex items-center text-lg font-medium">
-                    <AppLogoIcon className="mr-2 size-8 fill-current text-white" />
-                    {name}
-                </Link>
-                {quote && (
-                    <div className="relative z-20 mt-auto">
-                        <blockquote className="space-y-2">
-                            <p className="text-lg">&ldquo;{quote.message}&rdquo;</p>
-                            <footer className="text-sm text-neutral-300">{quote.author}</footer>
-                        </blockquote>
+        <div className="min-h-dvh bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-800">
+            <div className="container relative grid h-dvh flex-col items-center justify-center lg:grid-cols-2 lg:px-0">
+                {/* Sidebar esquerdo - apenas desktop */}
+                <div className="bg-gradient-to-br from-indigo-600 to-purple-600 relative hidden h-full flex-col p-10 text-white lg:flex">
+                    <div className="absolute inset-0 opacity-95">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/20"></div>
+                        <div className="absolute inset-0 bg-[url('/assets/texture.png')] opacity-10 mix-blend-overlay"></div>
                     </div>
-                )}
-            </div>
-            <div className="w-full lg:p-8">
-                <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-                    <Link href={route('home')} className="relative z-20 flex items-center justify-center lg:hidden">
-                        <AppLogoIcon className="h-10 fill-current text-black sm:h-12" />
+                    
+                    <Link 
+                        href={route('home')} 
+                        className="relative z-20 flex items-center text-lg font-medium group"
+                    >
+                        <AppLogoIcon className="mr-3 size-8 fill-current text-white transition-transform group-hover:scale-110" />
+                        <span className="bg-gradient-to-r from-white to-neutral-200 bg-clip-text text-transparent">
+                            {name}
+                        </span>
                     </Link>
-                    <div className="flex flex-col items-start gap-2 text-left sm:items-center sm:text-center">
-                        <h1 className="text-xl font-medium">{title}</h1>
-                        <p className="text-muted-foreground text-sm text-balance">{description}</p>
+                    
+                    {quote && (
+                        <div className="relative z-20 mt-auto">
+                            <blockquote className="space-y-4">
+                                <p className="text-xl font-light leading-relaxed italic">
+                                    &ldquo;{quote.message}&rdquo;
+                                </p>
+                                <footer className="text-sm font-medium text-white/80">
+                                    — {quote.author}
+                                </footer>
+                            </blockquote>
+                        </div>
+                    )}
+                </div>
+
+                {/* Conteúdo principal */}
+                <div className="w-full p-6 lg:p-8">
+                    <div className="mx-auto flex w-full flex-col justify-center space-y-8 sm:w-[400px]">
+                        {/* Logo mobile */}
+                        <Link 
+                            href={route('home')} 
+                            className="relative z-20 flex items-center justify-center lg:hidden group"
+                        >
+                            <AppLogoIcon className="size-10 fill-current text-black transition-transform group-hover:scale-110 sm:size-12" />
+                        </Link>
+                        
+                        {/* Cabeçalho */}
+                        <div className="flex flex-col items-start gap-3 text-left sm:items-center sm:text-center">
+                            <h1 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                                {title}
+                            </h1>
+                            {description && (
+                                <p className="text-muted-foreground max-w-md text-pretty text-sm leading-relaxed">
+                                    {description}
+                                </p>
+                            )}
+                        </div>
+                        
+                        {/* Conteúdo filho */}
+                        <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900">
+                            {children}
+                        </div>
                     </div>
-                    {children}
                 </div>
             </div>
         </div>
