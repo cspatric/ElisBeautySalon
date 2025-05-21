@@ -64,26 +64,36 @@ export default function Index({ employees }: Props) {
                 </div>
 
                 {/* Lista de profissionais */}
-                <div>
-                    <h2 className="mb-4 text-xl font-semibold">Profissionais</h2>
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                        {employees.map((employee) => (
-                            <div key={employee.id} className="flex items-center gap-4 rounded-xl bg-white p-4">
-                                <img
-                                    src={employee.photo || 'https://via.placeholder.com/48'}
-                                    alt={employee.name}
-                                    className="h-12 w-12 rounded-full bg-gray-200 object-cover"
-                                />
-                                <div>
-                                    <p className="text-base font-medium text-gray-800">{employee.name}</p>
-                                    <span className="rounded bg-red-600 px-2 py-1 text-xs text-white">Funcionário</span>
-                                    <p className="text-sm text-gray-500">{employee.phone}</p>
-                                    <p className="text-sm text-gray-500">{employee.email}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                {/* Lista de profissionais */}
+<div>
+    <h2 className="mb-4 text-xl font-semibold">Profissionais</h2>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {employees.map((employee) => (
+            <div key={employee.id} className="flex gap-4 rounded-xl bg-white p-4 items-start">
+                <img
+                    src={employee.photo || 'https://via.placeholder.com/48'}
+                    alt={employee.name}
+                    className="h-12 w-12 rounded-full bg-gray-200 object-cover"
+                />
+                <div className="flex flex-col flex-1">
+                    <p className="text-base font-medium text-gray-800">{employee.name}</p>
+                    <span className="mb-1 w-fit rounded bg-red-600 px-2 py-1 text-xs text-white">Funcionário</span>
+                    <p className="text-sm text-gray-500">{employee.phone}</p>
+                    <p className="text-sm text-gray-500">{employee.email}</p>
                 </div>
+                <div>
+                    <Button
+                        className="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded"
+                        onClick={() => router.visit(route('employee.edit', { id: employee.id }))}
+                    >
+                        Editar
+                    </Button>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
             </div>
         </AppLayout>
     );
