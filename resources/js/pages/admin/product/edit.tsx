@@ -64,7 +64,7 @@ export default function EditProduct({ product }: Props) {
                             type="text"
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         />
                         {errors.name && <span className="text-sm text-red-600">{errors.name}</span>}
                     </div>
@@ -75,7 +75,7 @@ export default function EditProduct({ product }: Props) {
                             type="number"
                             value={data.price}
                             onChange={(e) => setData('price', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         />
                         {errors.price && <span className="text-sm text-red-600">{errors.price}</span>}
                     </div>
@@ -85,7 +85,7 @@ export default function EditProduct({ product }: Props) {
                         <textarea
                             value={data.description}
                             onChange={(e) => setData('description', e.target.value)}
-                            className="rounded-lg border border-gray-300 px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                             rows={3}
                         />
                         {errors.description && <span className="text-sm text-red-600">{errors.description}</span>}
@@ -98,7 +98,7 @@ export default function EditProduct({ product }: Props) {
                             accept="image/*"
                             multiple
                             onChange={handleFileChange}
-                            className="rounded-lg border border-gray-300 px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         />
                         {data.photo.length > 0 && (
                             <div className="mt-2 flex flex-wrap gap-2">
@@ -114,7 +114,7 @@ export default function EditProduct({ product }: Props) {
                         <select
                             value={data.active ? '1' : '0'}
                             onChange={(e) => setData('active', e.target.value === '1')}
-                            className="rounded-lg border border-gray-300 px-4 py-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                            className="rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                         >
                             <option value="1">Ativo</option>
                             <option value="0">Desativado</option>
@@ -122,11 +122,7 @@ export default function EditProduct({ product }: Props) {
                     </div>
 
                     <div className="col-span-2 flex justify-end">
-                        <Button
-                            type="submit"
-                            className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-                            disabled={processing}
-                        >
+                        <Button type="submit" className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700" disabled={processing}>
                             {processing ? 'Salvando...' : 'Salvar Alterações'}
                         </Button>
                     </div>

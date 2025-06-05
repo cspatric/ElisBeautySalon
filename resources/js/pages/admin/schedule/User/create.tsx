@@ -57,10 +57,10 @@ export default function UserScheduleCreate({ employees, services }: Props) {
                 {step === 'home' && (
                     <>
                         {/* Serviços Populares */}
-                        <div className="mt-4 px-5 lg:px-20">
-                            <h3 className="mb-2 text-lg font-bold text-gray-800">Populares</h3>
-                            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
-                                {services.map((service) => (
+                        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+                            {services
+                                .filter((service) => service.active)
+                                .map((service) => (
                                     <label
                                         key={service.id}
                                         className={`relative cursor-pointer rounded-lg border p-2 ${data.service_id === service.id.toString() ? 'ring-2 ring-black' : ''}`}
@@ -80,14 +80,13 @@ export default function UserScheduleCreate({ employees, services }: Props) {
                                         </div>
                                     </label>
                                 ))}
-                            </div>
                         </div>
 
                         {/* Seleção de funcionário */}
-                        <div className="px-5 lg:px-20">
-                            <h3 className="mb-2 text-lg font-bold text-gray-800">Profissionais</h3>
-                            <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
-                                {employees.map((employee) => (
+                        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+                            {employees
+                                .filter((emp) => emp.active)
+                                .map((employee) => (
                                     <label
                                         key={employee.id}
                                         className={`flex flex-col items-center gap-2 rounded-lg border p-3 text-center ${data.employee_id === employee.id.toString() ? 'ring-2 ring-black' : ''}`}
@@ -100,7 +99,6 @@ export default function UserScheduleCreate({ employees, services }: Props) {
                                         <p className="text-sm font-medium">{employee.name}</p>
                                     </label>
                                 ))}
-                            </div>
                         </div>
                     </>
                 )}
