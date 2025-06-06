@@ -70,6 +70,7 @@ class EmployeeController extends Controller
             'workschedule'    => $validated['workschedule'] ?? [],
             'active'          => $validated['active'],
             'pagepermissions' => $validated['pagepermissions'] ?? [],
+            'password' => Hash::make($validated['password']),
         ]);
 
         return redirect()->route('employee.index')->with('success', 'Employee created successfully.');
