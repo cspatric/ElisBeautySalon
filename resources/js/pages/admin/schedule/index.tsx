@@ -168,9 +168,9 @@ export default function Home(props: Props) {
                 </div>
 
                 {/* AGENDAMENTOS + FORM */}
-                <div className="flex w-full gap-6">
+                <div className="flex w-full flex-col gap-6 lg:flex-row">
                     {/* LISTAGEM DE AGENDAMENTOS */}
-                    <div className="flex h-80 w-1/2 flex-col gap-5 overflow-y-auto rounded-xl bg-white p-5">
+                    <div className="flex h-80 w-full flex-col gap-5 overflow-y-auto rounded-xl bg-white p-5 lg:w-1/2">
                         <h1 className="text-xl text-[#6E6E6E]">
                             {selectedMonth !== null ? `Agendamentos de ${months[selectedMonth]}` : 'Selecione um mês'}
                         </h1>
@@ -232,7 +232,7 @@ export default function Home(props: Props) {
                     </div>
 
                     {/* FORMULÁRIO DE STATUS */}
-                    <div className="flex h-auto w-1/2 flex-col rounded-xl bg-white p-6">
+                    <div className="flex h-auto w-full flex-col rounded-xl bg-white p-6 lg:w-1/2">
                         {selectedSchedule ? (
                             <>
                                 <h1 className="mb-4 text-2xl font-semibold text-gray-800">
