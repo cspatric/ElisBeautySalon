@@ -29,9 +29,9 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        $employees = Employee::all();
-        $services = Service::all();
-        $schedule = Schedule::all();
+        $employees = Employee::where('active', true)->get();
+    $services = Service::where('active', true)->get();
+    $schedule = Schedule::all(); 
 
         return Inertia::render('admin/schedule/User/create', [
             'employees' => $employees,

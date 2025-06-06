@@ -9,27 +9,27 @@ import AppLogo from './app-logo';
 const mainNavItems: NavItem[] = [
     {
         title: 'Inicio',
-        href: '/home',
+        href: '/admin/home',
         icon: House,
     },
     {
         title: 'Agenda',
-        href: '/schedule',
+        href: '/admin/schedule',
         icon: CalendarCheck,
     },
     {
         title: 'Funcionarios',
-        href: '/employee',
+        href: '/admin/employee',
         icon: ContactRound,
     },
     {
         title: 'Serviços',
-        href: '/service',
+        href: '/admin/service',
         icon: SquareChartGantt,
     },
     {
         title: 'Produtos',
-        href: '/product',
+        href: '/admin/product',
         icon: ShoppingBasket,
     },
 ];
