@@ -97,11 +97,11 @@ export default function Home(props: Props) {
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 {/* MÊSES */}
                 {/* FILTROS */}
-                <div className="flex w-full flex-col gap-4 rounded-xl bg-white px-6 py-6 shadow">
+                <div className="flex w-full flex-col gap-4 rounded-xl bg-white px-6 py-6 shadow dark:bg-gray-800">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
                         {/* Filtro por serviço */}
                         <div className="flex flex-col">
-                            <label className="mb-1 text-sm font-semibold text-gray-700">Serviço</label>
+                        <label className="mb-1 text-sm font-semibold text-gray-700 dark:text-gray-300">Serviço</label>
                             <select
                                 value={selectedService ?? ''}
                                 onChange={(e) => {
@@ -170,8 +170,8 @@ export default function Home(props: Props) {
                 {/* AGENDAMENTOS + FORM */}
                 <div className="flex w-full flex-col gap-6 lg:flex-row">
                     {/* LISTAGEM DE AGENDAMENTOS */}
-                    <div className="flex h-80 w-full flex-col gap-5 overflow-y-auto rounded-xl bg-white p-5 lg:w-1/2">
-                        <h1 className="text-xl text-[#6E6E6E]">
+                    <div className="flex h-80 w-full flex-col gap-5 overflow-y-auto rounded-xl bg-white p-5 lg:w-1/2 dark:bg-gray-800">
+                        <h1 className="text-xl text-[#6E6E6E] dark:text-gray-100">
                             {selectedMonth !== null ? `Agendamentos de ${months[selectedMonth]}` : 'Selecione um mês'}
                         </h1>
                         <div className="flex w-full flex-col gap-2">

@@ -48,7 +48,7 @@ export default function Index({ employees }: Props) {
 
                     <Button
                         onClick={() => router.visit(route('employee.create'))}
-                        className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-white transition-colors hover:bg-blue-700"
+                        className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-white transition-colors hover:bg-red-700"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path
@@ -151,7 +151,7 @@ export default function Index({ employees }: Props) {
                                 <div className="mt-6">
                                     <Button
                                         onClick={() => router.visit(route('employee.create'))}
-                                        className="inline-flex items-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+                                        className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
