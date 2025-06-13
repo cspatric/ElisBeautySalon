@@ -104,12 +104,7 @@ export default function Create({ services }: Props) {
                                 onChange={(e) => setData('email', e.target.value)}
                                 error={errors.email}
                             />
-                            <InputField
-                                label="Telefone"
-                                type="tel"
-                                value={data.phone}
-                                onChange={(e) => setData('phone', e.target.value)}
-                            />
+                            <InputField label="Telefone" type="tel" value={data.phone} onChange={(e) => setData('phone', e.target.value)} />
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Status</label>
                                 <select
@@ -125,12 +120,7 @@ export default function Create({ services }: Props) {
 
                         {/* Coluna 2 */}
                         <div className="space-y-6">
-                            <InputField
-                                label="Senha"
-                                type="password"
-                                value={data.password}
-                                onChange={(e) => setData('password', e.target.value)}
-                            />
+                            <InputField label="Senha" type="password" value={data.password} onChange={(e) => setData('password', e.target.value)} />
                             <InputField
                                 label="Confirmar Senha"
                                 type="password"
@@ -154,11 +144,7 @@ export default function Create({ services }: Props) {
                                     className="block w-full rounded-lg border border-gray-300 px-4 py-2 file:cursor-pointer dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                                 />
                                 {data.photo && (
-                                    <img
-                                        src={data.photo}
-                                        alt="Pré-visualização"
-                                        className="mt-2 h-24 w-24 rounded-full border object-cover"
-                                    />
+                                    <img src={data.photo} alt="Pré-visualização" className="mt-2 h-24 w-24 rounded-full border object-cover" />
                                 )}
                             </div>
                         </div>
@@ -169,7 +155,10 @@ export default function Create({ services }: Props) {
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Serviços</label>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                             {services.map((service) => (
-                                <label key={service.id} className="flex items-start gap-2 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-600 dark:bg-gray-700">
+                                <label
+                                    key={service.id}
+                                    className="flex items-start gap-2 rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-600 dark:bg-gray-700"
+                                >
                                     <input
                                         type="checkbox"
                                         checked={data.services.includes(service.id)}
@@ -232,4 +221,3 @@ function InputField({
         </div>
     );
 }
-

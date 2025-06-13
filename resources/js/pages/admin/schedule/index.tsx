@@ -101,7 +101,7 @@ export default function Home(props: Props) {
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
                         {/* Filtro por serviço */}
                         <div className="flex flex-col">
-                        <label className="mb-1 text-sm font-semibold text-gray-700 dark:text-gray-300">Serviço</label>
+                            <label className="mb-1 text-sm font-semibold text-gray-700 dark:text-gray-300">Serviço</label>
                             <select
                                 value={selectedService ?? ''}
                                 onChange={(e) => {
